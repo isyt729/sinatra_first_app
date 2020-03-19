@@ -10,26 +10,16 @@
         <% @comments.each do |comment| %>
         <li data-id= "<%= comment.id %>">
             <%= comment.body %>
-            <span class="completed">done!</span>
+            <form method="post" action="/delete">
+              <input type="hidden"  name="id" value="<%= comment.id %>">
+              <input type="submit" value="done!">
+            </form>
         </li>
         <% end %>
     </ul>
-    <h2>追加</h2>
     <form method="post" action="/new">
-        <input type= "text" name="body"><input type= "submit" value="post!">
+        <input type= "text" name="body">
+        <input type= "submit" value="追加">
     </form>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>
-        $('.completed').click(function(){
-            var el = $(this).parent();
-            if (confirm('タスクは完了しましたか?')){
-                $.post('/delete',{
-                    id: el.data('id')
-                },function(){
-                    el.fadeOut(800);
-                });
-            }
-        })
-    </script>
 </body>
 </html>

@@ -24,6 +24,8 @@ post "/new" do
   redirect '/'
 end
 
-post'/delete' do
+post "/delete" do
+  puts params
   Comment.find(params[:id]).destroy
+  redirect '/'
 end
